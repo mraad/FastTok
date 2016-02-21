@@ -11,9 +11,9 @@ public final class FastTok
         this(256);
     }
 
-    public FastTok(final int length)
+    public FastTok(final int numTokens)
     {
-        tokens = new String[length];
+        tokens = new String[numTokens];
     }
 
     public int tokenize(
@@ -25,6 +25,18 @@ public final class FastTok
         {
             tokens = new String[newLen];
         }
+        return _tokenize(text, delimiter);
+    }
+
+    public int tokenize2(
+            final String text,
+            final char delimiter)
+    {
+        return _tokenize(text, delimiter);
+    }
+
+    int _tokenize(final String text, final char delimiter)
+    {
         int count = 0;
 
         int i = 0;
@@ -46,7 +58,16 @@ public final class FastTok
             final char delimiter)
     {
         final FastTok fastTok = new FastTok(line.length() / 2 + 2);
-        fastTok.tokenize(line, delimiter);
+        fastTok._tokenize(line, delimiter);
+        return fastTok.tokens;
+    }
+
+    public final static String[] toTokens2(
+            final String line,
+            final char delimiter)
+    {
+        final FastTok fastTok = new FastTok(line.length() + 1);
+        fastTok._tokenize(line, delimiter);
         return fastTok.tokens;
     }
 }
