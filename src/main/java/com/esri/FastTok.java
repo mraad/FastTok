@@ -35,6 +35,14 @@ public final class FastTok
         return _tokenize(text, delimiter);
     }
 
+    public String[] tokenize3(
+            final String text,
+            final char delimiter)
+    {
+        _tokenize(text, delimiter);
+        return tokens;
+    }
+
     int _tokenize(final String text, final char delimiter)
     {
         int count = 0;
